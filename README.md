@@ -6,7 +6,7 @@ This is an implementation of [LMSF](https://arxiv.org/) on Python 3 with using N
 
 The repository includes:
 * Source Python code of LMSF (lmsf.py).
-* Jupyter notebook (run_lmsf.ipynb) and Python script (run_lmsf.py) to demonstrate     the nuclei and cell segmentation pipeline .
+* Jupyter notebook (run_lmsf.ipynb) and Python script (run_lmsf.py) demonstrate the application of LMSF to a discrete signal as well as to a fragment of immunofluorescence image.
 * Test fragment of one-channel immunofluorescence image (image_fragment.tif).
 * Requirements.txt
 
