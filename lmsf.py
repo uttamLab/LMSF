@@ -22,7 +22,6 @@ def lmsf_1d(sig, n=5, t=0.5):
     w = len(sig)
     ker = np.ones((2*n+1,), dtype='int32')
     row = np.ones((1,w), dtype='int32')
-    ker = np.ones((2*n+1,), dtype='int32')
     sig_avr = np.convolve(sig, ker, mode='same')
     norm = np.convolve(row[0,:], ker, mode='same')
     sig_avr = np.divide(sig_avr, norm)
