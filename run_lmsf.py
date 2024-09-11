@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from skimage import io
+from skimage import io, data
+from skimage.filters import threshold_niblack, threshold_sauvola
 
 from lmsf import lmsf_1d, lmsf_2d, lmsf_2d_cumulative
 
@@ -27,7 +28,7 @@ def fill_with_color(image, lmsf):
 t = 0.5
 
 
-##### LMSF Denoising of Low Levels of a Discrete Signal #####
+##### LMSF Denoising of Low Levels of a Digital Signal #####
 
 # A discrete signal samples
 signal = np.array([1,1,1,1,1,0.75,0.5,0.25,0.05,0.1,0.25,0.5,0.75,1,1,1,1,1,0.85,
@@ -69,9 +70,11 @@ for i in range(len(n_i)):
 plt.show()
 
 
-##### LMSF Background Denoising of a Grayscale Image #####
+##### LMSF Background Denoising of Grayscale Images #####
 
-# Open a grayscale image
+# 1. Processing of Fluorescence Image
+
+# Open image
 path_to_img = 'image_fragment.tif'
 image = io.imread(path_to_img, plugin="tifffile")
 
@@ -128,4 +131,42 @@ ax[1,3].imshow(fill_with_color(image, image_lmsf['all'][1]), cmap='gray', interp
 ax[1,3].set_title('Cumulative\nLMSF\nResponse',
                   fontdict={'family':'serif', 'color':'black', 'weight':'normal', 'size':18})
 ax[1,3].axis('off')
+plt.show()
+
+
+# 2. Processing of Cameraman
+cameraman = data.camera()
+nn_cameraman = [5,10,20,40,50,80,100,150,200,250]
+cameraman_lmsf = lmsf_2d_cumulative(cameraman, t=t, nn=nn_cameraman)
+
+plot_img(cameraman, tlt='Cameraman')
+plot_img(cameraman_lmsf, tlt='LMSF Response for t = {0}, n = {1}'.format(t, nn_cameraman))
+plot_img(cameraman_lmsf>0, tlt='LMSF Binary Segmentation for t = {0}, n = {1}'.format(t, nn_cameraman))
+
+
+# 3. Niblack, Sauvola, and LMSF Thresholding
+page = data.page()
+
+thresh_niblack = threshold_niblack(page, window_size=25, k=0.8)
+thresh_sauvola = threshold_sauvola(page, window_size=25, k=0.2)
+
+t_page = 0.65
+nn_page = [20,50,95]
+page_lmsf = lmsf_2d_cumulative(page, t=t_page, nn=nn_page)
+plot_img(page_lmsf>0, tlt='LMSF Binary Segmentation for t = {0}, n = {1}'.format(t_page, nn_page))
+
+fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(8,5))
+fig.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=0.02, hspace=0.02)
+ax[0,0].imshow(page, cmap='gray', interpolation='nearest')
+ax[0,0].set_title('Image', fontdict={'family':'serif', 'color':'black', 'weight':'normal', 'size':18})
+ax[0,0].axis('off')
+ax[0,1].imshow(page > thresh_niblack, cmap='gray', interpolation='nearest')
+ax[0,1].set_title('Niblack', fontdict={'family':'serif', 'color':'black', 'weight':'normal', 'size':18})
+ax[0,1].axis('off')
+ax[1,0].imshow(page > thresh_sauvola, cmap='gray', interpolation='nearest')
+ax[1,0].set_title('Sauvola', fontdict={'family':'serif', 'color':'black', 'weight':'normal', 'size':18})
+ax[1,0].axis('off')
+ax[1,1].imshow(page_lmsf > 0, cmap='gray', interpolation='nearest')
+ax[1,1].set_title('LMSF', fontdict={'family':'serif', 'color':'black', 'weight':'normal', 'size':18})
+ax[1,1].axis('off')
 plt.show()
