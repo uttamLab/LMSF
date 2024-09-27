@@ -1,6 +1,6 @@
 # Local Mean Suppression Filter (LMSF) for Effective Background Identification in Fluorescence and Grayscale Images
 
-This is an implementation of [LMSF](https://arxiv.org/) on Python 3 with using NumPy. LMSF is easy-to-use, nonlinear filter for effective background identification in fluorescence microscopy and other grayscale images with dense and low-contrast foreground objects.
+This is an implementation of [LMSF](https://www.biorxiv.org/content/10.1101/2024.09.25.614955v1) on Python 3 with using NumPy. LMSF is easy-to-use, nonlinear filter for effective background identification in fluorescence microscopy and other grayscale images with dense and low-contrast foreground objects.
 
 ![Segmentation Example](content/logo.png)
 
