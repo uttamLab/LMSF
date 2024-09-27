@@ -20,7 +20,7 @@ numpy==1.24.3
 The Jupyter notebook (run_lmsf.ipynb) contains two examples that give a gentle introduction to using of LMSF. The first example demonstrates the use of LMSF to denoise digital signal samples, and the second illustrates LMSF background denoising of a grayscale image.
 Before running the Jupyter notebook, make sure that you place the Jupyter notebook, the source file, and the test image in the same directory.
 
-### LMSF for a Discrete Signal
+### LMSF for a Digital Signal
 To denoise equidistant signal samples, import `lmsf_1d`
 ```
 from lmsf import lmsf_1d
