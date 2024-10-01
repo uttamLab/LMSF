@@ -50,3 +50,5 @@ If you find UNSEG useful in your research, please consider citing:
 	journal = {bioRxiv}
 }
 ```
+## QR code
+![Segmentation Example](content/unseg_segmentation.png)
