@@ -37,7 +37,7 @@ from lmsf import lmsf_2d, lmsf_2d_cumulative
 If you find UNSEG useful in your research, please consider citing:
 
 ```
-@article {Kochetov2024.09.25.614955,
+@article {KU2024,
 	author = {Kochetov, Bogdan and Uttam, Shikhar},
 	title = {Local Mean Suppression Filter for Effective Background Identification in Fluorescence Images},
 	elocation-id = {2024.09.25.614955},
