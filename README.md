@@ -51,4 +51,4 @@ If you find UNSEG useful in your research, please consider citing:
 }
 ```
 ## QR code
-![Segmentation Example](content/unseg_segmentation.png)
+![BioRxiv](content/qr_bioRxiv_img_lmsf.png)
