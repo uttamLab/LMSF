@@ -34,7 +34,7 @@ from lmsf import lmsf_2d, lmsf_2d_cumulative
 ![Example](content/logo.gif)
 
 ## Citing LMSF
-If you find UNSEG useful in your research, please consider citing:
+If you find LMSF useful in your research, please consider citing:
 
 ```
 @article {KU2024,
